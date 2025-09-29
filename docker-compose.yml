@@ -1,0 +1,110 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: kmrl-db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: kmrl_docs
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - kmrl-net
+
+  minio:
+    image: quay.io/minio/minio
+    container_name: minio-server
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio-data:/data
+    networks:
+      - kmrl-net
+
+  email-watcher:
+    build: ./email-watcher
+    depends_on:
+      - module-a
+    networks:
+      - kmrl-net
+
+  module-a:
+    build: ./module-a-ingest
+    ports:
+      - "8001:8000"
+    depends_on:
+      - minio
+    networks:
+      - kmrl-net
+
+  module-b:
+    build: ./module-b-conversion
+    ports:
+      - "8002:8000"
+    depends_on:
+      - minio
+      - postgres
+      - module-c
+      - module-d
+      - module-g
+    networks:
+      - kmrl-net
+
+  module-c:
+    build: ./module-c-ocr
+    ports:
+      - "8003:8000"
+    depends_on:
+      - minio
+    networks:
+      - kmrl-net
+
+  module-d:
+    build: ./module-d-nlp
+    ports:
+      - "8000:8000"
+    networks:
+      - kmrl-net
+      
+  module-g:
+    build: ./module-g-translate
+    ports:
+      - "8005:8000"
+    networks:
+      - kmrl-net
+
+  auth-backend:
+    build: ./module-e-auth
+    ports:
+      - "8004:8000"
+    depends_on:
+      - postgres
+    networks:
+      - kmrl-net
+
+  frontend:
+    build: ./kmrl-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - module-a
+      - auth-backend
+    networks:
+      - kmrl-net
+
+volumes:
+  postgres-data:
+  minio-data:
+
+networks:
+  kmrl-net:
+    driver: bridge
+
+    

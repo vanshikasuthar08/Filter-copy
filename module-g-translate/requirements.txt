@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+transformers[sentencepiece]
+torch
+sacremoses

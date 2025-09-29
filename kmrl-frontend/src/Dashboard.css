@@ -1,0 +1,158 @@
+.dashboard-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background-color: #f4f7f9;
+  min-height: 100vh;
+}
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 2rem;
+  background-color: white;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.header-left, .header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.header-logo-small {
+    height: 35px;
+}
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.header-right span {
+    font-weight: 500;
+}
+.logout-button {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.logout-button:hover {
+  background-color: #c0392b;
+}
+.dashboard-main {
+  padding: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.dashboard-main h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: #003366;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+.folder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+.folder {
+  background-color: white;
+  border: 1px solid #dfe6e9;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.folder:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.folder-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+.folder-name {
+  font-weight: 600;
+  color: #2d3436;
+}
+
+.file-list {
+  margin-top: 2.5rem;
+  background-color: white;
+  border: 1px solid #dfe6e9;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+.file-list h3 {
+  margin-top: 0;
+  color: #0056b3;
+}
+.file-list ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.file-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.file-list li:last-child {
+  border-bottom: none;
+}
+.file-list a {
+  text-decoration: none;
+  color: #0984e3;
+  font-weight: 500;
+}
+.file-list a:hover {
+  text-decoration: underline;
+}
+.file-list span {
+  font-size: 0.9rem;
+  color: #636e72;
+}
+
+/* Styles for Admin Dashboard */
+.department-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.department-tab {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.department-tab h3 {
+  margin: 0 0 1rem 0;
+  color: #003366;
+}
+.folder-grid-admin {
+  display: flex;
+  gap: 1rem;
+}
+.folder-grid-admin button {
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  border: 1px solid #0056b3;
+  background-color: #f0f8ff;
+  color: #0056b3;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.folder-grid-admin button:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
